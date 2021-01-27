@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: mock-server
+
+server:
+  servlet:
+    context-path: /mock-server
+
+info:
+  name: ${spring.application.name}
+  description: Mock-sever para testar outros services
+  environment: ${spring.profiles.active}
+  version: 1.0.0
+
+resilience4j.circuitbreaker:
+  configs:
+    default:
+      registerHealthIndicator: true
+      slidingWindowSize: 10
+      minimumNumberOfCalls: 5
+      permittedNumberOfCallsInHalfOpenState: 3
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+      waitDurationInOpenState: 5s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      recordExceptions:
+        - org.springframework.web.client.HttpServerErrorException
+        - java.util.concurrent.TimeoutException
+        - java.io.IOException
+      ignoreExceptions:
+        - feign.FeignException.BadRequest
+        - org.faveroferreira.mockserver.exception.IncorrectCustomerDataException
+    shared:
+      slidingWindowSize: 100
+      permittedNumberOfCallsInHalfOpenState: 30
+      waitDurationInOpenState: 1s
+      failureRateThreshold: 50
+      eventConsumerBufferSize: 10
+      ignoreExceptions:
+        - feign.FeignException.BadRequest
+        - org.faveroferreira.mockserver.exception.IncorrectCustomerDataException
