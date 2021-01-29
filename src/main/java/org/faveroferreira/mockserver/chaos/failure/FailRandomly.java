@@ -1,10 +1,12 @@
-package org.faveroferreira.mockserver.util.failure;
+package org.faveroferreira.mockserver.chaos.failure;
 
-import org.faveroferreira.mockserver.util.PotentialFailure;
+import lombok.extern.slf4j.Slf4j;
+import org.faveroferreira.mockserver.chaos.PotentialFailure;
 
 import java.util.Random;
 
-public class FailRandomly implements PotentialFailure  {
+@Slf4j
+public class FailRandomly implements PotentialFailure {
 
     final private Random random = new Random();
     final private int numberOfOperations;
@@ -20,7 +22,7 @@ public class FailRandomly implements PotentialFailure  {
 
         if (canFail && random.nextInt() % 2 == 0) {
             failedCount++;
-            System.out.println("Operation failed");
+            log.info("M=FailRandomly, failed operation");
             throw new RuntimeException("Operation failed");
         }
     }

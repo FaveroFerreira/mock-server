@@ -1,4 +1,4 @@
-package org.faveroferreira.mockserver.util;
+package org.faveroferreira.mockserver.chaos;
 
 public interface PotentialFailure {
 

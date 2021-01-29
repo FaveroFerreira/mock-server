@@ -1,8 +1,8 @@
 package org.faveroferreira.mockserver.workbench;
 
 
-import org.faveroferreira.mockserver.util.PotentialFailure;
-import org.faveroferreira.mockserver.util.failure.FailRandomly;
+import org.faveroferreira.mockserver.chaos.PotentialFailure;
+import org.faveroferreira.mockserver.chaos.failure.FailRandomly;
 
 public class Main {
 
