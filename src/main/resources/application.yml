@@ -2,9 +2,9 @@ spring:
   application:
     name: mock-server
 
-server:
-  servlet:
-    context-path: /mock-server
+#server:
+#  servlet:
+#    context-path:
 
 info:
   name: ${spring.application.name}
